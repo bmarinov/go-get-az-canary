@@ -1,0 +1,16 @@
+# Ignore all
+*
+
+# Allow
+!/.gitignore
+
+!*.go
+!go.sum
+!go.mod
+!Dockerfile
+
+!README.md
+
+!/.vscode/launch.json
+
+!*/
