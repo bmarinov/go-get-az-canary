@@ -15,4 +15,6 @@ jobs:
       - name: build
         env:
           AZDO_TOKEN_SECRET: ${{secrets.AZURE_ACCESS_TOKEN}}
-        run: docker build --build-arg AZDO_ACCESS_TOKEN="${AZDO_TOKEN_SECRET}" .
+        run: docker build -t getcan:latest --build-arg AZDO_ACCESS_TOKEN="${AZDO_TOKEN_SECRET}" .
+      - name: run image
+        run: docker run getcan:latest
