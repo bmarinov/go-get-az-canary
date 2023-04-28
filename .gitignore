@@ -9,6 +9,8 @@
 !go.mod
 !Dockerfile
 
+!*.yml
+
 !README.md
 
 !/.vscode/launch.json
