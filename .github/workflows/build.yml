@@ -6,8 +6,8 @@ on:
     - cron: "05 01 * * 2"
   workflow_dispatch:
 jobs:
-  build_with_azdo_repo:
-    name: build go app with private dependency
+  build_with_private_azdo_gitconfig:
+    name: build using gitconfig for auth
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
@@ -16,5 +16,17 @@ jobs:
         env:
           AZDO_TOKEN_SECRET: ${{secrets.AZURE_ACCESS_TOKEN}}
         run: docker build -t getcan:latest --build-arg AZDO_ACCESS_TOKEN="${AZDO_TOKEN_SECRET}" .
+      - name: run image
+        run: docker run getcan:latest
+  build_with_private_azdo_netrc:
+    name: build using netrc for auth
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build
+        env:
+          AZDO_TOKEN_SECRET: ${{secrets.AZURE_ACCESS_TOKEN}}
+        run: docker build -f ./Dockerfile.netrc -t getcan:latest --build-arg AZDO_ACCESS_TOKEN="${AZDO_TOKEN_SECRET}" .
       - name: run image
         run: docker run getcan:latest
