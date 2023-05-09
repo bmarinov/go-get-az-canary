@@ -1,0 +1,7 @@
+version: '3'
+services:
+  app:
+    build: 
+      context: .
+      args:
+        - AZDO_ACCESS_TOKEN=${SECRET_AZDO_ACCESS_TOKEN}
